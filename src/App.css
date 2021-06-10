@@ -39,9 +39,6 @@ button {
     "digit digit digit oper";
   grid-auto-columns: 1fr;
 }
-.show-input {
-  grid-area: total;
-}
 .modifiers {
   grid-area: modif;
 }
@@ -52,21 +49,9 @@ button {
   grid-area: digit;
 }
 
-.show-input {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 2rem;
-}
-
 .modifiers {
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
-}
-
-.digits {
-  display: flex;
-  flex-wrap: wrap;
 }
 .digits button {
   flex: 1 0 26%;

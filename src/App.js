@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
 import './App.css';
+import styled from 'styled-components';
+
+const Input = styled.div`
+  grid-area: total;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 3rem;
+`
+const CalcButtons = styled.div`
+grid-area: digit;
+display: flex;
+flex-wrap: wrap;
+`
+
 
 function App() {
   const [data, setData] = useState("");
@@ -19,8 +34,8 @@ function App() {
 
   return (
     <div className="wrapper">
-      <div className="show-input"> {data} </div>
-      <div className="digits flex"> {calcButtons} </div>
+      <Input> {data} </Input>
+      <CalcButtons className="digits"> {calcButtons} </CalcButtons>
       <div className="modifiers subgrid">
         <button onClick={() => setData(data.substr(0, data.length - 1))}>
           Clear
