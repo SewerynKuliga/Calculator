@@ -2,6 +2,32 @@ import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  max-width: 420px;
+  min-height: 96vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+    "total total total total"
+    "modif modif modif oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper";
+  grid-auto-columns: 1fr;
+`
+const CalcBtn = styled.button`
+  flex: 1 0 26%;
+`
+const Modifiers = styled.div`
+  display: grid;
+  grid-area: modif;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+`
+const ModBtns = styled.button`
+  background-color: rgb(196, 195, 195);
+`
 const Input = styled.div`
   grid-area: total;
   display: flex;
@@ -10,53 +36,62 @@ const Input = styled.div`
   font-size: 3rem;
 `
 const CalcButtons = styled.div`
-grid-area: digit;
-display: flex;
-flex-wrap: wrap;
+  grid-area: digit;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f1f1f1;
+  flex: 1 0 26%;
 `
-
+const Operations = styled.div`
+  display: grid;
+  grid-area: oper;
+`
+const OperBtn = styled.button`
+  background-color: rgb(250, 119, 11);
+  width: 100px;
+`
 
 function App() {
   const [data, setData] = useState("");
   const calcButtons = [];
-  [9, 8, 7, 6, 5, 4, 3, 2, 1, ".", ",", "%"].forEach(item => {
+  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, ".", "%"].forEach(item => {
     calcButtons.push(
-      <button onClick={e => {
+      <CalcBtn onClick={e => {
         setData(data + e.target.value)
       }}
         value={item}
         key={item}
       >
         {item}
-      </button>
+      </CalcBtn>
     )
   })
 
   return (
-    <div className="wrapper">
+    <Wrapper>
       <Input> {data} </Input>
-      <CalcButtons className="digits"> {calcButtons} </CalcButtons>
-      <div className="modifiers subgrid">
-        <button onClick={() => setData(data.substr(0, data.length - 1))}>
+      <CalcButtons> {calcButtons} </CalcButtons>
+      <Modifiers>
+        <ModBtns onClick={() => setData(data.substr(0, data.length - 1))}>
           Clear
-        </button>
-        <button onClick={() => setData("")}>AC</button>
-      </div>
+        </ModBtns>
+        <ModBtns onClick={() => setData("")}>AC</ModBtns>
+      </Modifiers>
 
-      <div className="operations subgrid">
-        <button onClick={e => setData(data + e.target.value)} value="+">
+      <Operations>
+        <OperBtn onClick={e => setData(data + e.target.value)} value="+">
           +
-        </button>
-        <button onClick={e => setData(data + e.target.value)} value="-">
+        </OperBtn>
+        <OperBtn onClick={e => setData(data + e.target.value)} value="-">
           -
-        </button>
-        <button onClick={e => setData(data + e.target.value)} value="*">
+        </OperBtn>
+        <OperBtn onClick={e => setData(data + e.target.value)} value="*">
           *
-        </button>
-        <button onClick={e => setData(data + e.target.value)} value="/">
+        </OperBtn>
+        <OperBtn onClick={e => setData(data + e.target.value)} value="/">
           /
-        </button>
-        <button onClick={e => {
+        </OperBtn>
+        <OperBtn onClick={e => {
           try {
             setData(
               String(eval(data)).length > 3 &&
@@ -68,12 +103,11 @@ function App() {
           catch (err) {
             console.log(err)
           }
-
         }} value="=">
           =
-        </button>
-      </div>
-    </div>
+        </OperBtn>
+      </Operations>
+    </Wrapper>
   );
 }
 
