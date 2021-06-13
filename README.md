@@ -1,7 +1,10 @@
 # Calculator
 
 Simple Calculator app allows you to  `add`,  `subtract`,  `multiply` and  `divide` all numbers.
+An application built on `functions` and using `hooks`.
 ##
+
+
 
 ## Necessary Scripts
 
