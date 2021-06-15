@@ -1,11 +1,18 @@
 # Calculator
 
 Simple Calculator app allows you to  `add`,  `subtract`,  `multiply` and  `divide` all numbers.
+An application built on `functions` and using `hooks`.
 ##
+
+
 
 ## Necessary Scripts
 
 In the project directory, you have to run:
+
+### `npm install`
+
+It installs all the necessary files to start the application.
 
 ### `npm start`
 Runs the app in the development mode.<br />
