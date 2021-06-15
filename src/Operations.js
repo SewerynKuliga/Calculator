@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import styled from 'styled-components';
-import App from './App';
 
 const OperationsGrid = styled.div`
   display: grid;
@@ -12,38 +11,39 @@ const OperBtn = styled.button`
   width: 100px;
 `
 
-function Operations({data, setData}){
-    return(
-        <OperationsGrid>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="+">
-          +
-        </OperBtn>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="-">
-          -
-        </OperBtn>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="*">
-          *
-        </OperBtn>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="/">
-          /
-        </OperBtn>
-        <OperBtn onClick={e => {
-          try {
-            setData(
-              String(eval(data)).length > 3 &&
-                String(eval(data)).includes(".")
-                ? String(eval(data).toFixed(4))
-                : String(eval(data))
-            )
-          }
-          catch (err) {
-            console.log(err)
-          }
-        }} value="=">
-          =
-        </OperBtn>
-      </OperationsGrid>
-    )
+function Operations({ data, setData }) {
+
+  return (
+    <OperationsGrid>
+      <OperBtn onClick={e => setData(data + e.target.value)} value="+">
+        +
+      </OperBtn>
+      <OperBtn onClick={e => setData(data + e.target.value)} value="-">
+        -
+      </OperBtn>
+      <OperBtn onClick={e => setData(data + e.target.value)} value="*">
+        *
+      </OperBtn>
+      <OperBtn onClick={e => setData(data + e.target.value)} value="/">
+        /
+      </OperBtn>
+      <OperBtn onClick={e => {
+        try {
+          setData(
+            String(eval(data)).length > 3 &&
+              String(eval(data)).includes(".")
+              ? String(eval(data).toFixed(4))
+              : String(eval(data))
+          )
+        }
+        catch (err) {
+          console.log(err)
+        }
+      }} value="=">
+        =
+      </OperBtn>
+    </OperationsGrid>
+  )
 }
 
 export default Operations;

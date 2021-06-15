@@ -16,14 +16,14 @@ const ModBtns = styled.button`
 function Modifiers({ data, setData }) {
 
 
-    return (
-        <ModifiersBtns>
-            <ModBtns onClick={() => setData(data.substr(0, data.length - 1))}>
-                Clear
-            </ModBtns>
-            <ModBtns onClick={() => setData("")}>AC</ModBtns>
-        </ModifiersBtns>
-    )
+  return (
+    <ModifiersBtns>
+      <ModBtns onClick={() => setData(data.substr(0, data.length - 1))}>
+        Clear
+      </ModBtns>
+      <ModBtns onClick={() => setData("")}>AC</ModBtns>
+    </ModifiersBtns>
+  )
 }
 
 export default Modifiers;

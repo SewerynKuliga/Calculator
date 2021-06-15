@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
+import Modifiers from './Modifiers';
+import Operations from './Operations';
 
 const Wrapper = styled.div`
   max-width: 420px;
+  min-width: 300px;
   min-height: 96vh;
   margin: 0 auto;
   display: grid;
@@ -19,15 +22,6 @@ const Wrapper = styled.div`
 const CalcBtn = styled.button`
   flex: 1 0 26%;
 `
-const Modifiers = styled.div`
-  display: grid;
-  grid-area: modif;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-`
-const ModBtns = styled.button`
-  background-color: rgb(196, 195, 195);
-`
 const Input = styled.div`
   grid-area: total;
   display: flex;
@@ -42,17 +36,10 @@ const CalcButtons = styled.div`
   background-color: #f1f1f1;
   flex: 1 0 26%;
 `
-const Operations = styled.div`
-  display: grid;
-  grid-area: oper;
-`
-const OperBtn = styled.button`
-  background-color: rgb(250, 119, 11);
-  width: 100px;
-`
 
 function App() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState('');
+
   const calcButtons = [];
   [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, ".", "%"].forEach(item => {
     calcButtons.push(
@@ -71,42 +58,8 @@ function App() {
     <Wrapper>
       <Input> {data} </Input>
       <CalcButtons> {calcButtons} </CalcButtons>
-      <Modifiers>
-        <ModBtns onClick={() => setData(data.substr(0, data.length - 1))}>
-          Clear
-        </ModBtns>
-        <ModBtns onClick={() => setData("")}>AC</ModBtns>
-      </Modifiers>
-
-      <Operations>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="+">
-          +
-        </OperBtn>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="-">
-          -
-        </OperBtn>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="*">
-          *
-        </OperBtn>
-        <OperBtn onClick={e => setData(data + e.target.value)} value="/">
-          /
-        </OperBtn>
-        <OperBtn onClick={e => {
-          try {
-            setData(
-              String(eval(data)).length > 3 &&
-                String(eval(data)).includes(".")
-                ? String(eval(data).toFixed(4))
-                : String(eval(data))
-            )
-          }
-          catch (err) {
-            console.log(err)
-          }
-        }} value="=">
-          =
-        </OperBtn>
-      </Operations>
+      <Modifiers data={data} setData={setData} />
+      <Operations data={data} setData={setData} />
     </Wrapper>
   );
 }
