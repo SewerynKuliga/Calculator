@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
-import App from './App';
 
 const ModifiersBtns = styled.div`
   display: grid;
@@ -14,8 +13,6 @@ const ModBtns = styled.button`
 `
 
 function Modifiers({ data, setData }) {
-
-
   return (
     <ModifiersBtns>
       <ModBtns onClick={() => setData(data.substr(0, data.length - 1))}>
